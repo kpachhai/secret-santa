@@ -1,0 +1,10 @@
+{
+    "KP Woods": {
+        "email": "kpwoods@gmail.com",
+        "address": "1111 Pine Drive, Fairfax, VA"
+    },
+    "AJ Ramal": {
+        "email": "ramal@gmail.com",
+        "address": "2222 Woodcutter Drive, Fairfax, VA"
+    }
+}
