@@ -20,7 +20,7 @@ pip3 install virtualenv
 type virtualenv >/dev/null 2>&1 || { echo >&2 "No suitable python virtual env tool found, aborting"; exit 1; }
 
 rm -rf .venv
-virtualenv -p `which python3` .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
 

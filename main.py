@@ -10,7 +10,7 @@ from email.mime.multipart import MIMEMultipart
 
 
 def main():
-    with open("people.txt", "r") as rf:
+    with open("people.json", "r") as rf:
         decoded_data = json.load(rf)
 
     people = [*decoded_data]
@@ -22,7 +22,7 @@ def main():
         if people[i] in people_shuffled:
             is_self = True
             people_shuffled.remove(people[i])
-        secret_santa = random.choice(people_shuffled)  
+        secret_santa = random.choice(people_shuffled) 
         if secret_santa in people_shuffled:
             people_shuffled.remove(secret_santa)
         
@@ -32,8 +32,13 @@ def main():
                 <h2>Hello, {people[i]}</h2>
                 <h3>You got {secret_santa} for your Secret Santa Gift Exchange</h3>
                 <h3>Gift Price Range: $20 - $25</h3>
-                <h3>Please either send your gift to {decoded_data[secret_santa]["address"]} or drop it off at KP's place at 10317 Wood Rd, Fairfax, VA 22030</h3>
-                <h3>If you intend on shipping your gift, please make sure to send it as gift so the person you're sending the gift to does not know it's from you</h3>
+                <h3>Secret Santa & Friendsgiving:</h3>
+                <p>
+                    Location: KP's place(10317 Wood Rd, Fairfax, VA 22030) <br>
+                    Time: 3 pm - 9 pm
+                    Food: It's a potluck so you better bring at least ONE food item(not just snacks)
+                    Alcohol: On me
+                </p>
             </body>
             </html>
         """
@@ -41,9 +46,8 @@ def main():
         if is_self:
             people_shuffled.append(people[i])
 
-
 def send_email(to_email, subject, content_html):
-    from_email = "dev-support@tuum.tech"
+    from_email = config("SENDER")
 
     message = MIMEMultipart("mixed")
     message["Subject"] = subject
